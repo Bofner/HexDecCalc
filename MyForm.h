@@ -293,7 +293,7 @@ namespace HexDecCalc {
 			}
 			//As long as we are only using 0-9...
 			if (goodCharacters == 1) {
-				int decNumber = System::Convert::ToInt16(inputString);
+				int decNumber = System::Convert::ToInt32(inputString);
 				array<int>^ remainders;
 				remainders = gcnew array<int>(8);	//Hex Number will always have fewer digits than DEC
 				for (int i = 0; i < remainders->Length; i++) {
