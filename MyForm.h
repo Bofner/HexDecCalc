@@ -229,20 +229,20 @@ namespace HexDecCalc {
 
 		//Find out how long the input is
 		int inputLength = inputString->Length;
-
-		//Append string with up to 8 more numbers
-		for (int i = 0; i < 8 - inputLength; i++) {
-			inputString = "0" + inputString;
-		}
+		Char temp = '5';
+		int goodCharacters = 1; //1 is good, 0 is not good
 
 		//If we are converting a Hexadecimal number to decimal...
 		if (hexDecDropdown->Text == "Hexadecimal") {
+			//Append string with up to 8 more numbers
+			for (int i = 0; i < 8 - inputLength; i++) {
+				inputString = "0" + inputString;
+			}
 
-			//Check that we only are using 0-F
-			Char temp = '5';
-			int goodCharacters = 1; //1 is good, 0 is not good
+			//Check that we only are using the proper number (HEX 0-F, DEC 0-9)
 			array<int>^ inputValues;
 			inputValues = gcnew array<int>(8);
+
 			for (int i = 0; i < 8; i++) {
 				temp = System::Convert::ToChar(inputString[i]);
 				//If it is a number between 0-9
@@ -260,7 +260,6 @@ namespace HexDecCalc {
 			}
 			//As long as we are only using 0-F...
 			if (goodCharacters == 1) {
-
 					inputValues[0] = inputValues[0] * 268435456;//16^7
 					inputValues[1] = inputValues[1] * 16777216;//16^6
 					inputValues[2] = inputValues[2] * 1048576;//16^5
@@ -269,13 +268,11 @@ namespace HexDecCalc {
 					inputValues[5] = inputValues[5] * 256;//16^2
 					inputValues[6] = inputValues[6] * 16;//16^1
 					inputValues[7] = inputValues[7] * 1;//16^0
-
 					//Add up the results
 					int finalInt = inputValues[0] + inputValues[1] + inputValues[2] + inputValues[3] + inputValues[4] + inputValues[5] + inputValues[6] + inputValues[7];
-
+					
 					//Convert to presentable text
 					String^ output = Convert::ToString(finalInt);
-
 					//Display the Decimal number
 					outputTextBox->Text = output;
 			}
@@ -283,9 +280,63 @@ namespace HexDecCalc {
 
 		//If we are converting from Dec to Hex...
 		else if (hexDecDropdown->Text == "Decimal") {
-			
+			for (int i = 0; i < inputLength; i++) {
+				temp = System::Convert::ToChar(inputString[i]);
+				//If it is a number between 0-9
+				if (temp >= 48 && temp <= 57) {
+					//Don't need to do anything
+				}
+				//Otherwise, we can't do the calculation
+				else {
+					goodCharacters = 0;
+				}
+			}
+			//As long as we are only using 0-9...
+			if (goodCharacters == 1) {
+				int decNumber = System::Convert::ToInt16(inputString);
+				array<int>^ remainders;
+				remainders = gcnew array<int>(8);	//Hex Number will always have fewer digits than DEC
+				for (int i = 0; i < remainders->Length; i++) {
+					remainders[i] = 17;//Can never happen with normal input
+				}
+				//Do Dec to Hex calculation
+				int w = 0;
+				while (decNumber > 0) {
+					remainders[w] = decNumber % 16;
+					decNumber = decNumber / 16;
+					w++;
+				}
+				//Convert to presentable text
+				String^ output = "";
+				w = 0;
+				while(remainders[w] < 17) {
+					if (remainders[w] < 10) {
+						output = Convert::ToString(remainders[w]) + output;
+					}
+					else if(remainders[w] == 10) {
+						output = "A" + output;
+					}
+					else if (remainders[w] == 11) {
+						output ="B" + output;
+					}
+					else if (remainders[w] == 12) {
+						output = "C" + output;
+					}
+					else if (remainders[w] == 13) {
+						output = "D" + output;
+					}
+					else if (remainders[w] == 14) {
+						output = "E" + output;
+					}
+					else if (remainders[w] == 15) {
+						output = "F" + output;
+					}
+					w++;
+				}
+				//Display the Decimal number
+				outputTextBox->Text = output;
+			}
 		}
-
 	}
 //HexDec Output TextBox
 	private: System::Void hexDecTextBox_TextChanged(System::Object^ sender, System::EventArgs^ e) {
