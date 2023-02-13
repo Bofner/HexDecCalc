@@ -55,7 +55,49 @@ namespace HexDecCalc {
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
+		System::String^ hexToDecCalc(System::String^ input, int inLength, int useable) {
+			//Append string with up to 8 more numbers
+			for (int i = 0; i < 8 - inLength; i++) {
+				input = "0" + input;
+			}
 
+			//Check that we only are using the proper number (HEX 0-F, DEC 0-9)
+			array<int>^ inputValues;
+			inputValues = gcnew array<int>(8);
+			int temp = 0;
+			for (int i = 0; i < 8; i++) {
+				temp = System::Convert::ToChar(input[i]);
+				//If it is a number between 0-9
+				if (temp >= 48 && temp <= 57) {
+					inputValues[i] = temp - '0';
+				}
+				//If it is a character between A-F
+				else if (temp >= 65 && temp <= 70) {
+					inputValues[i] = temp - 55;
+				}
+				//Otherwise, we can't do the calculation
+				else {
+					useable = 0;
+				}
+			}
+			//As long as we are only using 0-F...
+			if (useable == 1) {
+				inputValues[0] = inputValues[0] * 268435456;//16^7
+				inputValues[1] = inputValues[1] * 16777216;//16^6
+				inputValues[2] = inputValues[2] * 1048576;//16^5
+				inputValues[3] = inputValues[3] * 65536;//16^4
+				inputValues[4] = inputValues[4] * 4096;//16^3
+				inputValues[5] = inputValues[5] * 256;//16^2
+				inputValues[6] = inputValues[6] * 16;//16^1
+				inputValues[7] = inputValues[7] * 1;//16^0
+				//Add up the results
+				int finalInt = inputValues[0] + inputValues[1] + inputValues[2] + inputValues[3] + inputValues[4] + inputValues[5] + inputValues[6] + inputValues[7];
+
+				//Convert to presentable text
+				String^ output = Convert::ToString(finalInt);
+				return output;
+			}
+		};
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -234,48 +276,11 @@ namespace HexDecCalc {
 
 		//If we are converting a Hexadecimal number to decimal...
 		if (hexDecDropdown->Text == "Hexadecimal") {
-			//Append string with up to 8 more numbers
-			for (int i = 0; i < 8 - inputLength; i++) {
-				inputString = "0" + inputString;
-			}
-
-			//Check that we only are using the proper number (HEX 0-F, DEC 0-9)
-			array<int>^ inputValues;
-			inputValues = gcnew array<int>(8);
-
-			for (int i = 0; i < 8; i++) {
-				temp = System::Convert::ToChar(inputString[i]);
-				//If it is a number between 0-9
-				if (temp >= 48 && temp <= 57) {
-					inputValues[i] = temp - '0';
-				}
-				//If it is a character between A-F
-				else if (temp >= 65 && temp <= 70) {
-					inputValues[i] = temp - 55;
-				}
-				//Otherwise, we can't do the calculation
-				else {
-					goodCharacters = 0;
-				}
-			}
-			//As long as we are only using 0-F...
-			if (goodCharacters == 1) {
-					inputValues[0] = inputValues[0] * 268435456;//16^7
-					inputValues[1] = inputValues[1] * 16777216;//16^6
-					inputValues[2] = inputValues[2] * 1048576;//16^5
-					inputValues[3] = inputValues[3] * 65536;//16^4
-					inputValues[4] = inputValues[4] * 4096;//16^3
-					inputValues[5] = inputValues[5] * 256;//16^2
-					inputValues[6] = inputValues[6] * 16;//16^1
-					inputValues[7] = inputValues[7] * 1;//16^0
-					//Add up the results
-					int finalInt = inputValues[0] + inputValues[1] + inputValues[2] + inputValues[3] + inputValues[4] + inputValues[5] + inputValues[6] + inputValues[7];
-					
-					//Convert to presentable text
-					String^ output = Convert::ToString(finalInt);
-					//Display the Decimal number
-					outputTextBox->Text = output;
-			}
+			
+			//Do the Hex-To-Dec conversion
+			String^ decConversion = hexToDecCalc(inputString, inputLength, goodCharacters);
+			//Display the Decimal number
+			outputTextBox->Text = decConversion;
 		}
 
 		//If we are converting from Dec to Hex...
@@ -345,4 +350,5 @@ namespace HexDecCalc {
 	private: System::Void outputTextBox_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 	}
 };
+
 }
