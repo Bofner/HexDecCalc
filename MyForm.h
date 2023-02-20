@@ -1,5 +1,5 @@
 #pragma once
-
+#include "MyForm1.h"
 namespace HexDecCalc {
 
 	using namespace System;
@@ -48,6 +48,18 @@ namespace HexDecCalc {
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::Button^ calculateButton;
+	private: System::Windows::Forms::Button^ switchButton;
+	internal: System::Windows::Forms::ComboBox^ operationDropDown;
+	private: System::Windows::Forms::TextBox^ input2TextBox;
+	private: System::Windows::Forms::Button^ calcButton2;
+	internal: System::Windows::Forms::ComboBox^ calcHexDropDown;
+	private: System::Windows::Forms::Label^ label4;
+	internal:
+	private:
+	internal:
+	private:
+
+	private:
 
 	private: System::ComponentModel::IContainer^ components;
 
@@ -193,6 +205,12 @@ namespace HexDecCalc {
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->calculateButton = (gcnew System::Windows::Forms::Button());
+			this->switchButton = (gcnew System::Windows::Forms::Button());
+			this->operationDropDown = (gcnew System::Windows::Forms::ComboBox());
+			this->input2TextBox = (gcnew System::Windows::Forms::TextBox());
+			this->calcButton2 = (gcnew System::Windows::Forms::Button());
+			this->calcHexDropDown = (gcnew System::Windows::Forms::ComboBox());
+			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// inputTextBox
@@ -201,7 +219,7 @@ namespace HexDecCalc {
 			this->inputTextBox->CharacterCasing = System::Windows::Forms::CharacterCasing::Upper;
 			this->inputTextBox->Font = (gcnew System::Drawing::Font(L"MS UI Gothic", 19.69811F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(128)));
-			this->inputTextBox->Location = System::Drawing::Point(47, 154);
+			this->inputTextBox->Location = System::Drawing::Point(35, 154);
 			this->inputTextBox->MaxLength = 8;
 			this->inputTextBox->Name = L"inputTextBox";
 			this->inputTextBox->Size = System::Drawing::Size(227, 36);
@@ -213,7 +231,7 @@ namespace HexDecCalc {
 			this->outputTextBox->Anchor = System::Windows::Forms::AnchorStyles::None;
 			this->outputTextBox->Font = (gcnew System::Drawing::Font(L"MS UI Gothic", 19.69811F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(128)));
-			this->outputTextBox->Location = System::Drawing::Point(47, 288);
+			this->outputTextBox->Location = System::Drawing::Point(35, 288);
 			this->outputTextBox->Name = L"outputTextBox";
 			this->outputTextBox->ReadOnly = true;
 			this->outputTextBox->Size = System::Drawing::Size(227, 36);
@@ -225,7 +243,7 @@ namespace HexDecCalc {
 			this->hexDecTextBox->Anchor = System::Windows::Forms::AnchorStyles::None;
 			this->hexDecTextBox->Font = (gcnew System::Drawing::Font(L"MS UI Gothic", 19.69811F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(128)));
-			this->hexDecTextBox->Location = System::Drawing::Point(356, 288);
+			this->hexDecTextBox->Location = System::Drawing::Point(385, 288);
 			this->hexDecTextBox->Name = L"hexDecTextBox";
 			this->hexDecTextBox->ReadOnly = true;
 			this->hexDecTextBox->Size = System::Drawing::Size(227, 36);
@@ -241,7 +259,7 @@ namespace HexDecCalc {
 				static_cast<System::Byte>(128)));
 			this->hexDecDropdown->FormattingEnabled = true;
 			this->hexDecDropdown->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"Hexadecimal", L"Decimal" });
-			this->hexDecDropdown->Location = System::Drawing::Point(356, 153);
+			this->hexDecDropdown->Location = System::Drawing::Point(385, 153);
 			this->hexDecDropdown->MaxLength = 32;
 			this->hexDecDropdown->Name = L"hexDecDropdown";
 			this->hexDecDropdown->Size = System::Drawing::Size(227, 37);
@@ -255,7 +273,7 @@ namespace HexDecCalc {
 			this->label1->AutoSize = true;
 			this->label1->Font = (gcnew System::Drawing::Font(L"MS UI Gothic", 36, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(128)));
-			this->label1->Location = System::Drawing::Point(157, 23);
+			this->label1->Location = System::Drawing::Point(157, 25);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(336, 53);
 			this->label1->TabIndex = 4;
@@ -270,7 +288,7 @@ namespace HexDecCalc {
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(47, 135);
+			this->label2->Location = System::Drawing::Point(35, 135);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(82, 13);
 			this->label2->TabIndex = 6;
@@ -279,7 +297,7 @@ namespace HexDecCalc {
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(47, 272);
+			this->label3->Location = System::Drawing::Point(35, 272);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(113, 13);
 			this->label3->TabIndex = 7;
@@ -289,13 +307,92 @@ namespace HexDecCalc {
 			// 
 			this->calculateButton->Font = (gcnew System::Drawing::Font(L"MS UI Gothic", 19.69811F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(128)));
-			this->calculateButton->Location = System::Drawing::Point(47, 369);
+			this->calculateButton->Location = System::Drawing::Point(35, 370);
 			this->calculateButton->Name = L"calculateButton";
 			this->calculateButton->Size = System::Drawing::Size(166, 37);
 			this->calculateButton->TabIndex = 8;
-			this->calculateButton->Text = L"Calculate";
+			this->calculateButton->Text = L"Convert";
 			this->calculateButton->UseVisualStyleBackColor = true;
 			this->calculateButton->Click += gcnew System::EventHandler(this, &MyForm::calculateButton_Click);
+			// 
+			// switchButton
+			// 
+			this->switchButton->Location = System::Drawing::Point(537, 25);
+			this->switchButton->Name = L"switchButton";
+			this->switchButton->Size = System::Drawing::Size(75, 23);
+			this->switchButton->TabIndex = 9;
+			this->switchButton->Text = L"Calculator";
+			this->switchButton->UseVisualStyleBackColor = true;
+			this->switchButton->Click += gcnew System::EventHandler(this, &MyForm::switchButton_Click);
+			// 
+			// operationDropDown
+			// 
+			this->operationDropDown->Anchor = System::Windows::Forms::AnchorStyles::None;
+			this->operationDropDown->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
+			this->operationDropDown->Font = (gcnew System::Drawing::Font(L"MS UI Gothic", 19.69811F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(128)));
+			this->operationDropDown->FormattingEnabled = true;
+			this->operationDropDown->Items->AddRange(gcnew cli::array< System::Object^  >(4) { L"+", L"-", L"x", L"€" });
+			this->operationDropDown->Location = System::Drawing::Point(297, 153);
+			this->operationDropDown->MaxLength = 32;
+			this->operationDropDown->Name = L"operationDropDown";
+			this->operationDropDown->Size = System::Drawing::Size(56, 37);
+			this->operationDropDown->TabIndex = 15;
+			this->operationDropDown->Visible = false;
+			this->operationDropDown->SelectedIndexChanged += gcnew System::EventHandler(this, &MyForm::operationDropDown_SelectedIndexChanged);
+			this->operationDropDown->SelectedIndex = 0;
+			// 
+			// input2TextBox
+			// 
+			this->input2TextBox->Anchor = System::Windows::Forms::AnchorStyles::None;
+			this->input2TextBox->CharacterCasing = System::Windows::Forms::CharacterCasing::Upper;
+			this->input2TextBox->Font = (gcnew System::Drawing::Font(L"MS UI Gothic", 19.69811F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(128)));
+			this->input2TextBox->Location = System::Drawing::Point(385, 154);
+			this->input2TextBox->MaxLength = 8;
+			this->input2TextBox->Name = L"input2TextBox";
+			this->input2TextBox->Size = System::Drawing::Size(227, 36);
+			this->input2TextBox->TabIndex = 16;
+			this->input2TextBox->Visible = false;
+			// 
+			// calcButton2
+			// 
+			this->calcButton2->Font = (gcnew System::Drawing::Font(L"MS UI Gothic", 19.69811F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(128)));
+			this->calcButton2->Location = System::Drawing::Point(35, 370);
+			this->calcButton2->Name = L"calcButton2";
+			this->calcButton2->Size = System::Drawing::Size(166, 37);
+			this->calcButton2->TabIndex = 17;
+			this->calcButton2->Text = L"Calculate";
+			this->calcButton2->UseVisualStyleBackColor = true;
+			this->calcButton2->Visible = false;
+			this->calcButton2->Click += gcnew System::EventHandler(this, &MyForm::calcButton2_Click);
+			// 
+			// calcHexDropDown
+			// 
+			this->calcHexDropDown->Anchor = System::Windows::Forms::AnchorStyles::None;
+			this->calcHexDropDown->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
+			this->calcHexDropDown->Font = (gcnew System::Drawing::Font(L"MS UI Gothic", 19.69811F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(128)));
+			this->calcHexDropDown->FormattingEnabled = true;
+			this->calcHexDropDown->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"Hexadecimal", L"Decimal" });
+			this->calcHexDropDown->Location = System::Drawing::Point(385, 287);
+			this->calcHexDropDown->MaxLength = 32;
+			this->calcHexDropDown->Name = L"calcHexDropDown";
+			this->calcHexDropDown->Size = System::Drawing::Size(227, 37);
+			this->calcHexDropDown->TabIndex = 18;
+			this->calcHexDropDown->Visible = false;
+			this->calcHexDropDown->SelectedIndex = 0;
+			// 
+			// label4
+			// 
+			this->label4->AutoSize = true;
+			this->label4->Location = System::Drawing::Point(382, 135);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(46, 13);
+			this->label4->TabIndex = 19;
+			this->label4->Text = L"Input 2";
+			this->label4->Visible = false;
 			// 
 			// MyForm
 			// 
@@ -303,6 +400,12 @@ namespace HexDecCalc {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::ActiveCaption;
 			this->ClientSize = System::Drawing::Size(624, 439);
+			this->Controls->Add(this->label4);
+			this->Controls->Add(this->calcHexDropDown);
+			this->Controls->Add(this->calcButton2);
+			this->Controls->Add(this->input2TextBox);
+			this->Controls->Add(this->operationDropDown);
+			this->Controls->Add(this->switchButton);
 			this->Controls->Add(this->calculateButton);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label2);
@@ -339,14 +442,14 @@ namespace HexDecCalc {
 		}
 
 	}
-//Calculation Button
+//Hex/Dec Conversion Button
 	private: System::Void calculateButton_Click(System::Object^ sender, System::EventArgs^ e) {
 
 		//Save the input
 		String^ inputString = inputTextBox->Text;
 
 	//If we are converting a Hexadecimal number to decimal...
-		if (hexDecDropdown->Text == "Hexadecimal") {
+		if (hexDecDropdown->Text == "Hexadecimal" && inputTextBox->Text != "") {
 			
 			//Do the Hex-To-Dec conversion
 			String^ decConversion = hexToDecCalc(inputString);
@@ -355,7 +458,7 @@ namespace HexDecCalc {
 		}
 
 	//If we are converting from Dec to Hex...
-		else if (hexDecDropdown->Text == "Decimal") {
+		else if (hexDecDropdown->Text == "Decimal" && inputTextBox->Text != "") {
 			//Do the Dec-To-Hex conversion
 			String^ hexConversion = decToHexCalc(inputString);
 			//Display the Hexadecimal number
@@ -367,6 +470,203 @@ namespace HexDecCalc {
 	}
 //Output TextBox
 	private: System::Void outputTextBox_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+	}
+//Switch between Converter and Calculator
+	private: System::Void switchButton_Click(System::Object^ sender, System::EventArgs^ e) {
+
+		if (switchButton->Text == "Calculator") {
+			switchButton->Text = "Converter";
+			operationDropDown->Visible = true;
+			label1->Text = "Hex Calculator";
+			label2->Text = "Input 1";
+			label3->Text = "Answer";
+			input2TextBox->Visible = true;
+			calculateButton->Visible = false;
+			calcButton2->Visible = true;
+			calcHexDropDown->Visible = true;
+			label4->Visible = true;
+			inputTextBox->Text = "";
+			outputTextBox->Text = "";
+			input2TextBox->Text = "";
+		}
+		else {
+			switchButton->Text = "Calculator";
+			operationDropDown->Visible = false;
+			label1->Text = "Hex <--> Dec";
+			label2->Text = "Input Number";
+			label3->Text = "Converted Number";
+			input2TextBox->Visible = false;
+			calculateButton->Visible = true;
+			calcButton2->Visible = false;
+			calcHexDropDown->Visible = false;
+			label4->Visible = false;
+			inputTextBox->Text = "";
+			outputTextBox->Text = "";
+			input2TextBox->Text = "";
+			
+		}
+		
+	}
+//Operation Drop Down
+	private: System::Void operationDropDown_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+	}
+//Hex/Dec Calculator Button
+	private: System::Void calcButton2_Click(System::Object^ sender, System::EventArgs^ e) {
+		//Save the input
+		String^ inputString1 = inputTextBox->Text;
+		String^ inputString2 = input2TextBox->Text;
+
+		int int1; 
+		int int2; 
+		String^ answer;
+
+//Hexadecimal operations
+		if (calcHexDropDown->Text == "Hexadecimal" && inputTextBox->Text != "" && input2TextBox->Text != "") {
+			//Do the Hex-To-Dec conversion
+			String^ input1 = hexToDecCalc(inputString1);
+			String^ input2 = hexToDecCalc(inputString2);
+			int1 = Convert::ToInt32(input1);
+			int2 = Convert::ToInt32(input2);
+
+			//Set up variables
+			Char temp = '5';
+			//1 is good, 0 is not good
+			int goodCharacters = 1;
+			//Find out how long the input is
+			int inputLength = inputString1->Length;
+			for (int i = 0; i < inputLength; i++) {
+				temp = System::Convert::ToChar(inputString1[i]);
+				//If it is a number between 0-9
+				if (temp >= 48 && temp <= 57) {
+					//Don't need to do anything
+				}
+				//If it is a character between A-F
+				else if (temp >= 65 && temp <= 70) {
+					//Do Nothing
+				}
+				//Otherwise, we can't do the calculation
+				else {
+					goodCharacters = 0;
+				}
+			}
+			inputLength = inputString2->Length;
+			for (int i = 0; i < inputLength; i++) {
+				temp = System::Convert::ToChar(inputString2[i]);
+				//If it is a number between 0-9
+				if (temp >= 48 && temp <= 57) {
+					//Don't need to do anything
+				}
+				//If it is a character between A-F
+				else if (temp >= 65 && temp <= 70) {
+					//Do Nothing
+				}
+				//Otherwise, we can't do the calculation
+				else {
+					goodCharacters = 0;
+				}
+			}
+
+			//As long as we only have proper characters
+			if (goodCharacters == 1) {
+				if (operationDropDown->Text == "+") {
+					//Add up the numbers
+					int decAnswer = int1 + int2;
+					//Send it back into the converter
+					String^ additionString = Convert::ToString(decAnswer);
+					answer = decToHexCalc(additionString);
+				}
+				else if (operationDropDown->Text == "-") {
+					//Subtract the numbers
+					int decAnswer = int1 - int2;
+					//Send it back into the converter
+					String^ subtractionString = Convert::ToString(decAnswer);
+					answer = decToHexCalc(subtractionString);
+				}
+				else if (operationDropDown->Text == "x") {
+					//Multiple the numbers
+					int decAnswer = int1 * int2;
+					//Send it back into the converter
+					String^ multiplicationString = Convert::ToString(decAnswer);
+					answer = decToHexCalc(multiplicationString);
+				}
+				else if (operationDropDown->Text == "€") {
+					//Divide the numbers
+					int decAnswer = int1 / int2;
+					//Send it back into the converter
+					String^ divisionString = Convert::ToString(decAnswer);
+					answer = decToHexCalc(divisionString);
+				}
+				//Display the Decimal number
+				outputTextBox->Text = answer;
+			}
+			
+		}
+//Decimal operations
+		else if (calcHexDropDown->Text == "Decimal" && inputTextBox->Text != "" && input2TextBox->Text != "") {
+
+			//Make sure we only have numbers
+			//Set up variables
+			Char temp = '5';
+			//1 is good, 0 is not good
+			int goodCharacters = 1;
+			//Find out how long the input is
+			int inputLength = inputString1->Length;
+
+			for (int i = 0; i < inputLength; i++) {
+				temp = System::Convert::ToChar(inputString1[i]);
+				//If it is a number between 0-9
+				if (temp >= 48 && temp <= 57) {
+					//Don't need to do anything
+				}
+				//Otherwise, we can't do the calculation
+				else {
+					goodCharacters = 0;
+				}
+			}
+			inputLength = inputString2->Length;
+			for (int i = 0; i < inputLength; i++) {
+				temp = System::Convert::ToChar(inputString2[i]);
+				//If it is a number between 0-9
+				if (temp >= 48 && temp <= 57) {
+					//Don't need to do anything
+				}
+				//Otherwise, we can't do the calculation
+				else {
+					goodCharacters = 0;
+				}
+			}
+			//If all set, then do the operation
+			if (goodCharacters == 1) {
+				int1 = Convert::ToInt32(inputString1);
+				int2 = Convert::ToInt32(inputString2);
+				if (operationDropDown->Text == "+") {
+					//Add up the numbers
+					int additionAnswer = int1 + int2;
+					//Send it back into the converter
+					answer = Convert::ToString(additionAnswer);
+				}
+				else if (operationDropDown->Text == "-") {
+					//Subtract the numbers
+					int subtractionAnswer = int1 - int2;
+					//Send it back into the converter
+					answer = Convert::ToString(subtractionAnswer);
+				}
+				else if (operationDropDown->Text == "x") {
+					//Multiple the numbers
+					int multiplicationAnswer = int1 * int2;
+					//Send it back into the converter
+					answer = Convert::ToString(multiplicationAnswer);
+				}
+				else if (operationDropDown->Text == "€") {
+					//Divide the numbers
+					int divisionAnswer = int1 / int2;
+					//Send it back into the converter
+					answer = Convert::ToString(divisionAnswer);
+				}
+				//Display the Decimal number
+				outputTextBox->Text = answer;
+			}
+		}
 	}
 };
 

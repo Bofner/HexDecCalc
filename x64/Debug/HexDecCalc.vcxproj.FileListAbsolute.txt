@@ -8,3 +8,4 @@ C:\Users\cam96\OneDrive\Desktop\Portfolio Projects\HexDecCalc\x64\Debug\HexDecCa
 C:\Users\cam96\OneDrive\Desktop\Portfolio Projects\HexDecCalc\x64\Debug\HexDecCalc.MyForm.resources
 C:\Users\cam96\OneDrive\Desktop\Portfolio Projects\HexDecCalc\x64\Debug\HexDecCalc.vcxproj.GenerateResource.cache
 C:\Users\cam96\OneDrive\Desktop\Portfolio Projects\HexDecCalc\x64\Debug\HexDecCalc.exe
+C:\Users\cam96\OneDrive\Desktop\Portfolio Projects\HexDecCalc\x64\Debug\HexDecCalc.MyForm1.resources
