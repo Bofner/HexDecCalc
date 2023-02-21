@@ -67,6 +67,56 @@ namespace HexDecCalc {
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
+		 
+//Check if input is a valid Dec number
+		int validDecNumber(String^ inputString) {
+			//Make sure we only have numbers
+			//Set up variables
+			Char temp = '5';
+			//1 is good, 0 is not good
+			int goodCharacters = 1;
+			//Find out how long the input is
+			int inputLength = inputString->Length;
+
+			for (int i = 0; i < inputLength; i++) {
+				temp = System::Convert::ToChar(inputString[i]);
+				//If it is a number between 0-9
+				if (temp >= 48 && temp <= 57) {
+					//Don't need to do anything
+				}
+				//Otherwise, we can't do the calculation
+				else {
+					goodCharacters = 0;
+				}
+			}
+			return goodCharacters;
+		};
+
+//Check if input in a valid Hex number
+		int validHexNumber(String^ inputString) {
+			//Set up variables
+			Char temp = '5';
+			//1 is good, 0 is not good
+			int goodCharacters = 1;
+			//Find out how long the input is
+			int inputLength = inputString->Length;
+			for (int i = 0; i < inputLength; i++) {
+				temp = System::Convert::ToChar(inputString[i]);
+				//If it is a number between 0-9
+				if (temp >= 48 && temp <= 57) {
+					//Don't need to do anything
+				}
+				//If it is a character between A-F
+				else if (temp >= 65 && temp <= 70) {
+					//Do Nothing
+				}
+				//Otherwise, we can't do the calculation
+				else {
+					goodCharacters = 0;
+				}
+			}
+			return goodCharacters;
+		};
 
 //Convert from Hexadecimal to Decimal
 		System::String^ hexToDecCalc(System::String^ input) {
@@ -117,31 +167,17 @@ namespace HexDecCalc {
 				String^ output = Convert::ToString(finalInt);
 				return output;
 			}
+			return "Invalid";
 		};
 
 //Convert from Decimal to Hexadecimal
 		System::String^ decToHexCalc(System::String^ input) {
-			//Set up variables
-			Char temp = '5';
-			//1 is good, 0 is not good
-			int goodCharacters = 1; 
-			//Find out how long the input is
-			int inputLength = input->Length;
 
+			//Make sure we only have numbers
+			int onlyNumbers = validDecNumber(input);
 
-			for (int i = 0; i < inputLength; i++) {
-				temp = System::Convert::ToChar(input[i]);
-				//If it is a number between 0-9
-				if (temp >= 48 && temp <= 57) {
-					//Don't need to do anything
-				}
-				//Otherwise, we can't do the calculation
-				else {
-					goodCharacters = 0;
-				}
-			}
 			//As long as we are only using 0-9...
-			if (goodCharacters == 1) {
+			if (onlyNumbers == 1) {
 				int decNumber = System::Convert::ToInt32(input);
 				array<int>^ remainders;
 				remainders = gcnew array<int>(8);	//Hex Number will always have fewer digits than DEC
@@ -185,6 +221,8 @@ namespace HexDecCalc {
 				//return
 				return output;
 			}
+
+			return "Invalid";
 		};
 
 #pragma region Windows Form Designer generated code
@@ -454,7 +492,12 @@ namespace HexDecCalc {
 			//Do the Hex-To-Dec conversion
 			String^ decConversion = hexToDecCalc(inputString);
 			//Display the Decimal number
-			outputTextBox->Text = decConversion;
+			if (decConversion != "Invalid") {
+				outputTextBox->Text = decConversion;
+			}
+			else {
+				outputTextBox->Text = "Invalid Input";
+			}
 		}
 
 	//If we are converting from Dec to Hex...
@@ -462,7 +505,13 @@ namespace HexDecCalc {
 			//Do the Dec-To-Hex conversion
 			String^ hexConversion = decToHexCalc(inputString);
 			//Display the Hexadecimal number
-			outputTextBox->Text = hexConversion;
+			if (hexConversion != "Invalid") {
+				outputTextBox->Text = hexConversion;
+			}
+			else {
+				outputTextBox->Text = "Invalid Input";
+			}
+			
 		}
 	}
 //HexDec Output TextBox
@@ -522,52 +571,22 @@ namespace HexDecCalc {
 
 //Hexadecimal operations
 		if (calcHexDropDown->Text == "Hexadecimal" && inputTextBox->Text != "" && input2TextBox->Text != "") {
-			//Do the Hex-To-Dec conversion
-			String^ input1 = hexToDecCalc(inputString1);
-			String^ input2 = hexToDecCalc(inputString2);
-			int1 = Convert::ToInt32(input1);
-			int2 = Convert::ToInt32(input2);
 
-			//Set up variables
-			Char temp = '5';
-			//1 is good, 0 is not good
-			int goodCharacters = 1;
-			//Find out how long the input is
-			int inputLength = inputString1->Length;
-			for (int i = 0; i < inputLength; i++) {
-				temp = System::Convert::ToChar(inputString1[i]);
-				//If it is a number between 0-9
-				if (temp >= 48 && temp <= 57) {
-					//Don't need to do anything
-				}
-				//If it is a character between A-F
-				else if (temp >= 65 && temp <= 70) {
-					//Do Nothing
-				}
-				//Otherwise, we can't do the calculation
-				else {
-					goodCharacters = 0;
-				}
-			}
-			inputLength = inputString2->Length;
-			for (int i = 0; i < inputLength; i++) {
-				temp = System::Convert::ToChar(inputString2[i]);
-				//If it is a number between 0-9
-				if (temp >= 48 && temp <= 57) {
-					//Don't need to do anything
-				}
-				//If it is a character between A-F
-				else if (temp >= 65 && temp <= 70) {
-					//Do Nothing
-				}
-				//Otherwise, we can't do the calculation
-				else {
-					goodCharacters = 0;
-				}
-			}
+			int goodHexNum1 = validHexNumber(inputString1);
+
+			int goodHexNum2 = validHexNumber(inputString2);
+
+			
 
 			//As long as we only have proper characters
-			if (goodCharacters == 1) {
+			if (goodHexNum1 == 1 && goodHexNum2 == 1) {
+
+				//Do the Hex-To-Dec conversion
+				String^ input1 = hexToDecCalc(inputString1);
+				String^ input2 = hexToDecCalc(inputString2);
+				int1 = Convert::ToInt32(input1);
+				int2 = Convert::ToInt32(input2);
+
 				if (operationDropDown->Text == "+") {
 					//Add up the numbers
 					int decAnswer = int1 + int2;
@@ -599,44 +618,19 @@ namespace HexDecCalc {
 				//Display the Decimal number
 				outputTextBox->Text = answer;
 			}
+			else {
+				outputTextBox->Text = "Invalid Input";
+			}
 			
 		}
 //Decimal operations
 		else if (calcHexDropDown->Text == "Decimal" && inputTextBox->Text != "" && input2TextBox->Text != "") {
 
-			//Make sure we only have numbers
-			//Set up variables
-			Char temp = '5';
-			//1 is good, 0 is not good
-			int goodCharacters = 1;
-			//Find out how long the input is
-			int inputLength = inputString1->Length;
+			int goodNumber1 = validDecNumber(inputString1);
 
-			for (int i = 0; i < inputLength; i++) {
-				temp = System::Convert::ToChar(inputString1[i]);
-				//If it is a number between 0-9
-				if (temp >= 48 && temp <= 57) {
-					//Don't need to do anything
-				}
-				//Otherwise, we can't do the calculation
-				else {
-					goodCharacters = 0;
-				}
-			}
-			inputLength = inputString2->Length;
-			for (int i = 0; i < inputLength; i++) {
-				temp = System::Convert::ToChar(inputString2[i]);
-				//If it is a number between 0-9
-				if (temp >= 48 && temp <= 57) {
-					//Don't need to do anything
-				}
-				//Otherwise, we can't do the calculation
-				else {
-					goodCharacters = 0;
-				}
-			}
+			int goodNumber2 = validDecNumber(inputString2);
 			//If all set, then do the operation
-			if (goodCharacters == 1) {
+			if (goodNumber1 == 1 && goodNumber2 == 1) {
 				int1 = Convert::ToInt32(inputString1);
 				int2 = Convert::ToInt32(inputString2);
 				if (operationDropDown->Text == "+") {
@@ -665,6 +659,9 @@ namespace HexDecCalc {
 				}
 				//Display the Decimal number
 				outputTextBox->Text = answer;
+			}
+			else {
+				outputTextBox->Text = "Invalid Input";
 			}
 		}
 	}
