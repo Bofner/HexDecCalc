@@ -10,5 +10,5 @@
  ## And from Decimal to Hexadecimal
  ![](https://github.com/Bofner/HexDecCalc/blob/main/Assets/E6B.png)
  
- ##Also includes a basic Hexadecimal and Decimal calculator!
+ ## Also includes a basic Hexadecimal and Decimal calculator!
  ![](https://github.com/Bofner/HexDecCalc/blob/main/Assets/calcMode.png)
