@@ -1,4 +1,2 @@
-﻿  MyForm.cpp
-C:\Users\cam96\OneDrive\Desktop\Portfolio Projects\HexDecCalc\MyForm.cpp(12,1): warning C4829: Possibly incorrect parameters to function main. Consider 'int main(Platform::Array<Platform::String^>^ argv)'
-  mathFunctions.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
-  HexDecCalc.vcxproj -> C:\Users\cam96\OneDrive\Desktop\Portfolio Projects\HexDecCalc\x64\Debug\HexDecCalc.exe
+﻿  mathFunctions.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
+  HexDecCalc.vcxproj -> C:\Users\cam96\Desktop\Portfolio Projects\HexDecCalc\x64\Debug\HexDecCalc.exe
